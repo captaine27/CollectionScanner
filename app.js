@@ -22,6 +22,32 @@ function initialiser() {
 
 }
 
+/*****************************************************
+ * Vérifie le support de BarcodeDetector
+ *****************************************************/
+function verifierBarcodeDetector() {
+
+    if ("BarcodeDetector" in window) {
+
+        console.log("✅ BarcodeDetector disponible");
+
+        afficherInformation(
+            "✅",
+            "BarcodeDetector disponible"
+        );
+
+    } else {
+
+        console.log("❌ BarcodeDetector indisponible");
+
+        afficherInformation(
+            "⚠️",
+            "BarcodeDetector indisponible"
+        );
+
+    }
+
+}
 
 /*****************************************************
  * Vérifie si la caméra est disponible
