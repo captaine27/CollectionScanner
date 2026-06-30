@@ -16,6 +16,7 @@ function initialiser() {
 
     verifierCamera();
     verifierBarcodeDetector();
+    verifierZXing();
     
     document
         .getElementById("btnScanner")
@@ -61,6 +62,19 @@ function verifierCamera() {
 
 }
 
+function verifierZXing() {
+
+    if (window.ZXing) {
+
+        console.log("✅ ZXing chargé");
+
+    } else {
+
+        console.log("❌ ZXing absent");
+
+    }
+
+}
 
 /*****************************************************
  * Bouton Scanner
