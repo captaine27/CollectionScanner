@@ -15,7 +15,8 @@ function initialiser() {
     console.log("Application démarrée");
 
     verifierCamera();
-
+    verifierBarcodeDetector();
+    verifierCamera();
     document
         .getElementById("btnScanner")
         .addEventListener("click", lancerScanner);
