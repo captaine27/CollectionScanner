@@ -28,23 +28,15 @@ function initialiser() {
  *****************************************************/
 function verifierBarcodeDetector() {
 
+    alert("Test BarcodeDetector");
+
     if ("BarcodeDetector" in window) {
 
         console.log("✅ BarcodeDetector disponible");
 
-        afficherInformation(
-            "✅",
-            "BarcodeDetector disponible"
-        );
-
     } else {
 
         console.log("❌ BarcodeDetector indisponible");
-
-        afficherInformation(
-            "⚠️",
-            "BarcodeDetector indisponible"
-        );
 
     }
 
