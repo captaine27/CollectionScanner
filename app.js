@@ -16,7 +16,11 @@ function initialiser() {
 
     verifierCamera();
     verifierBarcodeDetector();
-    verifierZXing();
+    function verifierZXing() {
+
+    alert(typeof ZXing);
+
+}
     
     document
         .getElementById("btnScanner")
