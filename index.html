@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#1976D2">
+
+    <meta name="description"
+          content="Ma Collection - Scanner de codes-barres">
+
+    <title>Ma Collection</title>
+
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+
+            <h1>📚 Ma Collection</h1>
+
+            <p class="sousTitre">
+                Scanner rapidement un code-barres
+            </p>
+
+        </header>
+
+
+        <!-- Zone caméra -->
+
+        <section class="card">
+
+            <div id="reader"></div>
+
+            <button id="btnScanner">
+                📷 Scanner
+            </button>
+
+        </section>
+
+
+        <!-- Résultat -->
+
+        <section
+            id="resultat"
+            class="card resultat">
+
+            <h2>En attente...</h2>
+
+            <p>
+                Appuyez sur Scanner pour commencer.
+            </p>
+
+        </section>
+
+
+        <!-- Pied de page -->
+
+        <footer>
+
+            Version 1.0
+
+        </footer>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

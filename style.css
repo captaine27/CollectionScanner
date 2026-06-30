@@ -1,0 +1,195 @@
+/* =====================================================
+   Ma Collection - Scanner
+   Version 1.0
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#ECEFF1;
+
+    color:#263238;
+}
+
+
+/* Conteneur */
+
+.container{
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:20px;
+}
+
+
+/* Titre */
+
+header{
+
+    text-align:center;
+
+    margin-bottom:25px;
+}
+
+header h1{
+
+    font-size:2em;
+
+    margin-bottom:8px;
+}
+
+.sousTitre{
+
+    color:#607D8B;
+
+    font-size:1rem;
+}
+
+
+/* Cartes */
+
+.card{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+
+
+/* Zone caméra */
+
+#reader{
+
+    width:100%;
+
+    min-height:250px;
+
+    border:2px dashed #B0BEC5;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#78909C;
+
+    margin-bottom:20px;
+}
+
+
+/* Bouton scanner */
+
+#btnScanner{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#1976D2;
+
+    color:white;
+
+    font-size:1.2rem;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+#btnScanner:hover{
+
+    background:#1565C0;
+
+    transform:scale(1.02);
+}
+
+#btnScanner:active{
+
+    transform:scale(.98);
+}
+
+
+/* Résultat */
+
+.resultat{
+
+    text-align:center;
+}
+
+.resultat h2{
+
+    margin-bottom:10px;
+}
+
+.success{
+
+    color:#2E7D32;
+}
+
+.error{
+
+    color:#C62828;
+}
+
+.info{
+
+    color:#1565C0;
+}
+
+
+/* Pied de page */
+
+footer{
+
+    text-align:center;
+
+    color:#90A4AE;
+
+    font-size:.9rem;
+
+    margin-top:25px;
+}
+
+
+/* Responsive */
+
+@media(max-width:600px){
+
+    .container{
+
+        padding:15px;
+    }
+
+    header h1{
+
+        font-size:1.7em;
+    }
+
+    #btnScanner{
+
+        font-size:1.1rem;
+    }
+
+}
