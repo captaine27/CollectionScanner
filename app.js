@@ -5,6 +5,9 @@
 
 "use strict";
 
+let video = null;
+let fluxCamera = null;
+
 document.addEventListener("DOMContentLoaded", initialiser);
 
 function initialiser() {
@@ -48,31 +51,40 @@ function verifierCamera() {
  *****************************************************/
 async function lancerScanner() {
 
-    afficherInformation(
-        "📷",
-        "Demande d'autorisation..."
-    );
+    try{
 
-    try {
+        fluxCamera = await navigator.mediaDevices.getUserMedia({
 
-        const flux = await navigator.mediaDevices.getUserMedia({
-            video: true
+            video:{
+                facingMode:"environment"
+            }
+
         });
 
+        video = document.getElementById("camera");
+
+        video.srcObject = fluxCamera;
+
+        video.style.display = "block";
+
         afficherSucces(
-            "Caméra autorisée",
-            "Le navigateur a accepté l'accès à la caméra."
+
+            "Caméra ouverte",
+
+            "Prête à scanner un code-barres."
+
         );
 
-        // On coupe immédiatement la caméra.
-        flux.getTracks().forEach(track => track.stop());
-
     }
+
     catch(e){
 
         afficherErreur(
-            "Accès refusé",
+
+            "Impossible d'ouvrir la caméra",
+
             e.name
+
         );
 
         console.error(e);
@@ -80,7 +92,6 @@ async function lancerScanner() {
     }
 
 }
-
 
 /*****************************************************
  * Affichage
