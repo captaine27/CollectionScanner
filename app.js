@@ -28,20 +28,17 @@ function initialiser() {
  *****************************************************/
 function verifierBarcodeDetector() {
 
-    alert("Test BarcodeDetector");
-
     if ("BarcodeDetector" in window) {
 
-        console.log("✅ BarcodeDetector disponible");
+        alert("✅ BarcodeDetector DISPONIBLE");
 
     } else {
 
-        console.log("❌ BarcodeDetector indisponible");
+        alert("❌ BarcodeDetector INDISPONIBLE");
 
     }
 
 }
-
 /*****************************************************
  * Vérifie si la caméra est disponible
  *****************************************************/
