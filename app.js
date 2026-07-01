@@ -158,7 +158,7 @@ async function demarrerScanner() {
                     navigator.vibrate(150);
                 }
 
-                afficherSucces(code);
+                rechercherDansCollection(code);
 
                 console.log(code);
 
@@ -172,5 +172,36 @@ async function demarrerScanner() {
     }
 
 }
+
+}
+async function rechercherDansCollection(code) {
+
+    afficherInfo(
+        "🔍 Recherche dans votre collection..."
+    );
+
+    try {
+
+        const url =
+            CONFIG.APPS_SCRIPT_URL +
+            "?code=" +
+            encodeURIComponent(code);
+
+        const reponse = await fetch(url);
+
+        const resultat = await reponse.json();
+
+        console.log(resultat);
+
+    }
+    catch(erreur){
+
+        console.error(erreur);
+
+        afficherErreur(
+            "Impossible de contacter Google Sheets."
+        );
+
+    }
 
 }
