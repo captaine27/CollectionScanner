@@ -79,19 +79,10 @@ header h1{
 
     min-height:250px;
 
-    border:2px dashed #B0BEC5;
+    overflow:hidden;
 
     border-radius:10px;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:#78909C;
-
-    margin-bottom:20px;
 }
 
 
@@ -203,6 +194,6 @@ footer{
 
     object-fit:cover;
 
-    display:none;
+    display:block;
 
 }
