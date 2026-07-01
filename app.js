@@ -1,13 +1,31 @@
 "use strict";
 
 /*****************************************************
+ * Ma Collection
+ * Version 2.0
+ * Bloc 1 : Initialisation
+ *****************************************************/
+
+
+/*****************************************************
  * Variables globales
  *****************************************************/
+
+// Scanner ZXing
 let lecteur = null;
-let dernierCode = "";
-let scannerEnCours = false;
-let codeReader = null;
+
+// Caméra active ?
 let cameraActive = false;
+
+// Flux vidéo
+let fluxVideo = null;
+
+// Dernier code lu
+let dernierCode = "";
+
+// Lecture autorisée ?
+let lectureAutorisee = true;
+
 
 /*****************************************************
  * Initialisation
@@ -16,19 +34,36 @@ window.addEventListener("load", initialiser);
 
 function initialiser() {
 
-    console.log("Application démarrée");
+    console.log("=== Ma Collection ===");
+    console.log("Initialisation...");
 
-    document
-        .getElementById("btnScanner")
-        .addEventListener("click", demarrerScanner);
+    const bouton =
+        document.getElementById("btnScanner");
+
+    if (!bouton) {
+
+        console.error("Bouton Scanner introuvable");
+        return;
+
+    }
+
+    bouton.addEventListener(
+        "click",
+        demarrerScanner
+    );
 
     afficherInfo(
         "Application prête",
-        "Appuyez sur Scanner."
+        "Appuyez sur « Scanner »."
     );
 
 }
-function afficherInfo(titre, texte){
+
+
+/*****************************************************
+ * Affichage
+ *****************************************************/
+function afficherInfo(titre, texte) {
 
     document.getElementById("resultat").innerHTML = `
         <h2>${titre}</h2>
@@ -37,7 +72,8 @@ function afficherInfo(titre, texte){
 
 }
 
-function afficherSucces(code){
+
+function afficherSucces(code) {
 
     document.getElementById("resultat").innerHTML = `
         <h2>✅ Code détecté</h2>
@@ -45,87 +81,19 @@ function afficherSucces(code){
     `;
 
 }
+
+
 /*****************************************************
- * Démarrage du scanner ZXing
+ * Scanner
+ * (sera développé au bloc 2)
  *****************************************************/
-async function demarrerScanner() {
+function demarrerScanner() {
 
-    if (cameraActive) return;
-
-    cameraActive = true;
+    console.log("Bouton Scanner");
 
     afficherInfo(
-        "📷 Caméra",
-        "Recherche d'un code-barres..."
+        "Scanner",
+        "Initialisation..."
     );
-
-    codeReader = new ZXing.BrowserMultiFormatReader();
-
-    try {
-
-        const videoInputDevices =
-            await codeReader.listVideoInputDevices();
-
-        if(videoInputDevices.length === 0){
-
-            afficherInfo(
-                "Erreur",
-                "Aucune caméra trouvée."
-            );
-
-            cameraActive = false;
-            return;
-
-        }
-
-        await codeReader.decodeFromVideoDevice(
-
-            null,
-
-            "camera",
-
-            (result, err) => {
-
-                if(result){
-
-                    const code = result.getText();
-
-                    if(code !== dernierCode){
-
-                        dernierCode = code;
-
-                        navigator.vibrate?.(150);
-
-                        afficherSucces(code);
-
-                    }
-
-                }
-
-            }
-
-        );
-
-    }
-
- catch(e){
-
-    console.error(e);
-
-    alert(
-        "Erreur ZXing :\n\n" +
-        e.name + "\n\n" +
-        e.message
-    );
-
-    afficherInfo(
-        "Erreur",
-        e.message
-    );
-
-    cameraActive = false;
-
-}
-    }
 
 }
