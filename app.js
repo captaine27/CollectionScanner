@@ -12,7 +12,7 @@
  *****************************************************/
 
 // Scanner ZXing
-let lecteur = null;
+let lecteur = new ZXingBrowser.BrowserMultiFormatReader();
 
 // Caméra active ?
 let cameraActive = false;
@@ -118,7 +118,7 @@ async function demarrerScanner() {
         await video.play();
 
         cameraActive = true;
-
+        lancerLecture();
         afficherInfo(
             "📷 Caméra",
             "Caméra ouverte."
@@ -136,5 +136,41 @@ async function demarrerScanner() {
         );
 
     }
+    async function lancerLecture() {
+
+    const video = document.getElementById("camera");
+
+    try {
+
+        await lecteur.decodeFromVideoElement(
+            video,
+            (result, err) => {
+
+                if (!result) return;
+
+                const code = result.getText();
+
+                if (code === dernierCode) return;
+
+                dernierCode = code;
+
+                if (navigator.vibrate) {
+                    navigator.vibrate(150);
+                }
+
+                afficherSucces(code);
+
+                console.log(code);
+
+            }
+        );
+
+    } catch(e) {
+
+        console.error(e);
+
+    }
+
+}
 
 }
