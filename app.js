@@ -84,16 +84,57 @@ function afficherSucces(code) {
 
 
 /*****************************************************
- * Scanner
- * (sera développé au bloc 2)
+ * Démarrage de la caméra
  *****************************************************/
-function demarrerScanner() {
+async function demarrerScanner() {
 
-    console.log("Bouton Scanner");
+    if (cameraActive) return;
 
-    afficherInfo(
-        "Scanner",
-        "Initialisation..."
-    );
+    try {
+
+        afficherInfo(
+            "📷 Caméra",
+            "Ouverture..."
+        );
+
+        const video =
+            document.getElementById("camera");
+
+        fluxVideo =
+            await navigator.mediaDevices.getUserMedia({
+
+                video: {
+                    facingMode: {
+                        ideal: "environment"
+                    }
+                },
+
+                audio: false
+
+            });
+
+        video.srcObject = fluxVideo;
+
+        await video.play();
+
+        cameraActive = true;
+
+        afficherInfo(
+            "📷 Caméra",
+            "Caméra ouverte."
+        );
+
+    }
+
+    catch(e){
+
+        console.error(e);
+
+        afficherInfo(
+            "Erreur",
+            e.message
+        );
+
+    }
 
 }
