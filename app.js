@@ -16,18 +16,19 @@ function initialiser() {
 
     verifierCamera();
     verifierBarcodeDetector();
-    function verifierZXing() {
+    verifierZXing();
 
-    alert(typeof ZXing);
-
-}
-    
     document
         .getElementById("btnScanner")
         .addEventListener("click", lancerScanner);
 
 }
 
+function verifierZXing() {
+
+    alert("typeof ZXing = " + typeof ZXing);
+
+}
 /*****************************************************
  * Vérifie le support de BarcodeDetector
  *****************************************************/
