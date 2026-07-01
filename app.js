@@ -176,9 +176,10 @@ async function demarrerScanner() {
 }
 async function rechercherDansCollection(code) {
 
-    afficherInfo(
-        "🔍 Recherche dans votre collection..."
-    );
+ afficherInfo(
+    "🔍 Recherche dans votre collection...",
+    "Connexion à Google Sheets..."
+);
 
     try {
 
