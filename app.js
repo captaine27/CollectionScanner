@@ -136,6 +136,8 @@ async function demarrerScanner() {
         );
 
     }
+    }
+    
     async function lancerLecture() {
 
     const video = document.getElementById("camera");
@@ -173,8 +175,7 @@ async function demarrerScanner() {
 
 }
 
-}
-async function rechercherDansCollection(code) {
+}async function rechercherDansCollection(code) {
 
  afficherInfo(
     "🔍 Recherche dans votre collection...",
@@ -204,5 +205,13 @@ async function rechercherDansCollection(code) {
         );
 
     }
+
+}
+function afficherErreur(message) {
+
+    document.getElementById("resultat").innerHTML = `
+        <h2>❌ Erreur</h2>
+        <p>${message}</p>
+    `;
 
 }
