@@ -108,17 +108,24 @@ async function demarrerScanner() {
 
     }
 
-    catch(e){
+ catch(e){
 
-        console.error(e);
+    console.error(e);
 
-        afficherInfo(
-            "Erreur",
-            e.message
-        );
+    alert(
+        "Erreur ZXing :\n\n" +
+        e.name + "\n\n" +
+        e.message
+    );
 
-        cameraActive = false;
+    afficherInfo(
+        "Erreur",
+        e.message
+    );
 
+    cameraActive = false;
+
+}
     }
 
 }
