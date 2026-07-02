@@ -224,3 +224,20 @@ async function lancerLecture() {
     }
 
 }
+/*****************************************************
+ * TRAITEMENT D'UN CODE
+ *****************************************************/
+
+function traiterCode(code){
+
+    afficherResultat(
+
+        "Code détecté",
+
+        code,
+
+        "success"
+
+    );
+
+}
