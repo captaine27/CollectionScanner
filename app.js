@@ -236,68 +236,36 @@ async function traiterCode(code){
         "info"
     );
 
-    try{
+ try {
 
-        const url =
-            CONFIG.APPS_SCRIPT_URL +
-            "?code=" +
-            encodeURIComponent(code);
+    const url =
+        CONFIG.APPS_SCRIPT_URL +
+        "?code=" +
+        encodeURIComponent(code);
 
-        console.log("URL :", url);
+    console.log("URL :", url);
 
-const reponse = await fetch(url);
+    const reponse = await fetch(url);
 
-console.log("Status :", reponse.status);
+    console.log("Status :", reponse.status);
+    console.log("URL finale :", reponse.url);
+    console.log("Type :", reponse.type);
 
-const texte = await reponse.text();
+    const texte = await reponse.text();
 
-console.log("Réponse brute :", texte);
-        console.log(resultat);
+    console.log("Réponse :", texte);
 
-        if(resultat.trouve){
+}
+catch(erreur){
 
-            afficherResultat(
+    console.error(erreur);
 
-                "Déjà acquis",
+    afficherResultat(
+        "Erreur",
+        erreur.message,
+        "error"
+    );
 
-                `📀 ${resultat.titre}
-📁 ${resultat.type}
-📍 Ligne ${resultat.ligne}`,
-
-                "error"
-
-            );
-
-        }
-        else{
-
-            afficherResultat(
-
-                "Non présent",
-
-                "Cette référence n'existe pas dans votre collection.",
-
-                "success"
-
-            );
-
-        }
-
-    }
-    catch(erreur){
-
-        console.error(erreur);
-
-        afficherResultat(
-
-            "Erreur",
-
-            "Impossible de contacter Google Sheets.",
-
-            "error"
-
-        );
-
-    }
+}
 
 }
