@@ -243,10 +243,15 @@ async function traiterCode(code){
             "?code=" +
             encodeURIComponent(code);
 
-        const reponse = await fetch(url);
+        console.log("URL :", url);
 
-        const resultat = await reponse.json();
+const reponse = await fetch(url);
 
+console.log("Status :", reponse.status);
+
+const texte = await reponse.text();
+
+console.log("Réponse brute :", texte);
         console.log(resultat);
 
         if(resultat.trouve){
