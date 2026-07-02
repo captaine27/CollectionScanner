@@ -158,3 +158,69 @@ async function demarrerScanner() {
     }
 
 }
+/*****************************************************
+ * ZXING
+ *****************************************************/
+
+async function lancerLecture() {
+
+    console.log("Lecture démarrée...");
+
+    const video =
+        document.getElementById("camera");
+
+    try {
+
+        await lecteur.decodeFromVideoElement(
+
+            video,
+
+            (result, erreur) => {
+
+                if (!result) return;
+
+                if (!lectureAutorisee) return;
+
+                const code = result.getText();
+
+                if (code === dernierCode) return;
+
+                lectureAutorisee = false;
+
+                dernierCode = code;
+
+                if (navigator.vibrate) {
+
+                    navigator.vibrate(150);
+
+                }
+
+                console.log("Code :", code);
+
+                traiterCode(code);
+
+                setTimeout(() => {
+
+                    lectureAutorisee = true;
+
+                }, CONFIG.DELAI_SCAN);
+
+            }
+
+        );
+
+    }
+
+    catch(erreur){
+
+        console.error(erreur);
+
+        afficherResultat(
+            "Erreur scanner",
+            erreur.message,
+            "error"
+        );
+
+    }
+
+}
