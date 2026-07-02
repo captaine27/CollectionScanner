@@ -228,16 +228,71 @@ async function lancerLecture() {
  * TRAITEMENT D'UN CODE
  *****************************************************/
 
-function traiterCode(code){
+async function traiterCode(code){
 
     afficherResultat(
-
-        "Code détecté",
-
-        code,
-
-        "success"
-
+        "Recherche...",
+        "Connexion à votre collection...",
+        "info"
     );
+
+    try{
+
+        const url =
+            CONFIG.APPS_SCRIPT_URL +
+            "?code=" +
+            encodeURIComponent(code);
+
+        const reponse = await fetch(url);
+
+        const resultat = await reponse.json();
+
+        console.log(resultat);
+
+        if(resultat.trouve){
+
+            afficherResultat(
+
+                "Déjà acquis",
+
+                `📀 ${resultat.titre}
+📁 ${resultat.type}
+📍 Ligne ${resultat.ligne}`,
+
+                "error"
+
+            );
+
+        }
+        else{
+
+            afficherResultat(
+
+                "Non présent",
+
+                "Cette référence n'existe pas dans votre collection.",
+
+                "success"
+
+            );
+
+        }
+
+    }
+    catch(erreur){
+
+        console.error(erreur);
+
+        afficherResultat(
+
+            "Erreur",
+
+            "Impossible de contacter Google Sheets.",
+
+            "error"
+
+        );
+
+    }
 
 }
