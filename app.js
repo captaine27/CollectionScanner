@@ -92,3 +92,69 @@ function afficherResultat(titre, texte, type = "info") {
     `;
 
 }
+/*****************************************************
+ * CAMÉRA
+ *****************************************************/
+
+async function demarrerScanner() {
+
+    if (cameraActive) {
+
+        console.log("Caméra déjà ouverte.");
+        return;
+
+    }
+
+    afficherResultat(
+        "Caméra",
+        "Ouverture...",
+        "info"
+    );
+
+    try {
+
+        const video =
+            document.getElementById("camera");
+
+        fluxVideo =
+            await navigator.mediaDevices.getUserMedia({
+
+                video:{
+                    facingMode:{
+                        ideal:"environment"
+                    }
+                },
+
+                audio:false
+
+            });
+
+        video.srcObject = fluxVideo;
+
+        await video.play();
+
+        cameraActive = true;
+
+        afficherResultat(
+            "Caméra",
+            "Caméra ouverte.",
+            "success"
+        );
+
+        lancerLecture();
+
+    }
+
+    catch(erreur){
+
+        console.error(erreur);
+
+        afficherResultat(
+            "Erreur caméra",
+            erreur.message,
+            "error"
+        );
+
+    }
+
+}
